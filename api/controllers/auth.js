@@ -1,15 +1,27 @@
 import User from "../model/user.model.js";
 import bcrypt from "bcryptjs";
-const signup = async (req, res) => {
+import {errorHandler} from "../utils/error.js";
 
+const signup = async (req, res, next) => {
 const {username, email, password} = req.body;   
 if (!username || !email || !password||username==""||email==""||password=="") {
-    return res.status(400).json({message: "All fields are required"});
 
+    next(errorHandler(400, 'All fields are required'));
+    return;
+   
+}
+if (password.length < 6) {
+    next(errorHandler(400, 'Password must be at least 6 characters long'));
+    return;
+}
+if (typeof password !== 'string' || password === "") {
+    next(errorHandler(400, 'Password must be a string'));   
+    return;
 }
 
 
-    const hashPassword = bcrypt.hashSync(password, 10); 
+     const salt = bcrypt.genSaltSync(10);
+    const hashPassword = bcrypt.hashSync(password, salt); 
     const newUser = new User(
         {username,
         email,
@@ -20,9 +32,8 @@ if (!username || !email || !password||username==""||email==""||password=="") {
     try {
         const user = await newUser.save();
         res.status(201).json(user);
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+    } catch (error) { 
+        next(error)
     }
 }
 
