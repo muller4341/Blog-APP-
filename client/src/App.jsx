@@ -5,11 +5,13 @@ import Home from './pages/Home/Home'
 import Dashbord from './pages/Dashbord/Dashbord'
 import Projects from './pages/Projects/Projects'
 import About from './pages/About/About'
+import Navbar from './pages/Navbar/Navbar'
 function App() {
   
 
   return (
 <Router>
+  <Navbar/>
 <Routes>
 
 <Route path="/" element={<Home/>} />
