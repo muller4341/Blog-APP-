@@ -12,7 +12,7 @@ const Header = () => {
                 <Link to='/' className='self-center whitespace-nowrap 
                 text-2xl sm:text-3xl font-semibold dar:text-white '>
                     <span className='text-2xl sm:text-3xl font-bold
-                    bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 text-white rounded-lg '>Muller's
+                    bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 text-white rounded-lg '> Muller's
                     </span>
                     Blog
 
@@ -41,7 +41,7 @@ const Header = () => {
 
                    </button>
                    <Link to ='/signin' >
-                    <button className=' border rounded-lg bg-gradient-to-r from-purple-400  to-blue-400  w-16 h-10' >
+                    <button className=' border rounded-lg hover:bg-gradient-to-r from-purple-400  to-blue-400  w-16 h-10 border-blue-400'  >
                         sign in 
                     </button>
                    </Link>
