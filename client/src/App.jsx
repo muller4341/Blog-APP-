@@ -6,6 +6,8 @@ import Dashbord from './pages/Dashbord/Dashbord'
 import Projects from './pages/Projects/Projects'
 import About from './pages/About/About'
 import Navbar from './pages/Navbar/Navbar'
+import Footer from './pages/footer/footer'
+
 function App() {
   
 
@@ -25,6 +27,7 @@ function App() {
 
 
   </Routes>
+  <Footer/>
 
 
 
