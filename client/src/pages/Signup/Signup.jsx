@@ -34,14 +34,16 @@ const Signup = () => {
             if (data.success=== false) {
                 return setErrorMessage(data.message);
             }
-            setLoading(false);
+            if (res.ok){
             navigate('/signin');
+            }
         }
         catch (error) {
-            setErrorMessage(error.message);
+            setErrorMessage(error.message);    
+        }
+
+        finally {
             setLoading(false);
-
-
         }
 
 
