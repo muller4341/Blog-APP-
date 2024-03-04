@@ -12,7 +12,7 @@ const Header = () => {
                 <Link to='/' className='self-center whitespace-nowrap 
                 text-2xl sm:text-3xl font-semibold dar:text-white '>
                     <span className='text-2xl sm:text-3xl font-bold
-                    bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 text-white rounded-lg '> Muller's
+                    bg-gradient-to-r from-yellow-600 to-red-600 text-white rounded-lg '> Muller's
                     </span>
                     Blog
 

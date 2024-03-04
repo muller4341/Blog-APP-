@@ -9,7 +9,7 @@ const Signin = () => {
                 <Link to='/' className='self-center whitespace-nowrap 
                 text-2xl sm:text-3xl font-semibold dar:text-white '>
                     <span className='text-2xl sm:text-3xl font-bold
-                    bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 text-white rounded-lg '> Muller's
+                    bg-gradient-to-r from-yellow-600 to-red-600  text-white rounded-lg '> Muller's
                     </span>
                     Blog
 
@@ -33,17 +33,7 @@ const Signin = () => {
             placeholder="Username"
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="email"
-            type="email"
-            placeholder="Email"
-          />
-        </div>
+        
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
             Password
@@ -57,7 +47,7 @@ const Signin = () => {
         </div>
         <div className="mb-6">
           <button
-            className="w-full bg-red-400
+            className="w-full bg-gradient-to-r from-yellow-600 to-red-600
              hover:bg-red-600
              text-white font-bold text-[24px] py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button"
