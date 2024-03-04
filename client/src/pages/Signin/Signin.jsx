@@ -2,17 +2,22 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Spinner } from 'flowbite-react';
+import {signInStart, signInSuccess,signInFail} from '../../redux/user/userSlice'
+import { useDispatch, useSelector } from 'react-redux';
+
+
 
 
 const Signin = () => {
 
+    const dispatch = useDispatch();
 
 
-    const [formData, setFormData] = useState()
+    const [formData, setFormData] = useState({})
     const navigate = useNavigate();
+    const {loading, error: errorMessage} = useSelector(state => state.user);  
+
     
-    const [loading, setLoading] = useState(false);
-    const[errorMessage, setErrorMessage] = useState(null);
     const handleChange = (e) => {
         setFormData({...formData, [e.target.id]: e.target.value.trim()})
     };
@@ -20,12 +25,10 @@ const Signin = () => {
         e.preventDefault();
 
         if ( !formData.email || !formData.password) {
-            setErrorMessage('All fields are required. please fill them out');
-            return;
+            return dispatch(signInFail('All fields are required. please fill them out'));
         }
         try {
-            setLoading(true);
-            setErrorMessage(null);
+            dispatch(signInStart());  
         const res= await fetch('api/auth/signin', {
                 method: 'POST',
                 headers: {
@@ -35,27 +38,24 @@ const Signin = () => {
             });
             const data = await res.json();
             if (data.success=== false) {
-                return setErrorMessage(data.message);
+            return dispatch(signInFail('Invalid credentials. Please try again.'));
             }
+            
             if (res.ok){
+                dispatch(signInSuccess(data));
                 navigate('/');
                 }
             
         }
         catch (error) {
             console.error('Error during fetch:', error);
-            setErrorMessage(error.message);
+            dispatch(signInFail(error.message));
             }   
-            finally {
-                setLoading(false);
-            }
+            
 
 
     }
 
-
-
-    console.log(formData)
 
 
     return (
@@ -99,13 +99,13 @@ const Signin = () => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             type="password"
-            placeholder="Password"
+            placeholder="******"
             onChange={handleChange}
           />
         </div>
 
             {
-                errorMessage && 
+                errorMessage&& 
                 ( 
                     <div  className=' flex w-full h-8   rounded-lg m-2 justify-center items-center '>
                 <p  className='text-red-500 m-2 text-[14px] font-semibold justify-center items-center'>
@@ -121,7 +121,7 @@ const Signin = () => {
             className="w-full bg-gradient-to-r from-yellow-600 to-red-600
              hover:bg-red-600
              text-white font-bold text-[24px] py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
+            type="submit"
             onClick={handleSubmit}
             disabled={loading}
           >
@@ -136,9 +136,9 @@ const Signin = () => {
         </div>
         <p className="text-center text-gray-500 text-xs">
           Have not account?{' '}
-          <a className="text-blue-500 hover:text-blue-700" href="/signup">
+          <Link to='/signup' className="text-blue-500 hover:text-blue-700" >
             Sign up
-          </a>
+          </Link>
         </p>
       </form>
 
