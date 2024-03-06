@@ -1,11 +1,15 @@
-import {Navbar} from 'flowbite-react'
+import {Avatar, Navbar} from 'flowbite-react'
+import {Dropdown} from 'flowbite-react'
 import {Link, useLocation} from 'react-router-dom'
 import {AiOutlineSearch} from 'react-icons/ai'
 import {FaMoon} from 'react-icons/fa'
+import { useSelector } from 'react-redux'
+
 
 const Header = () => {
     const path = useLocation();
-
+    const{currentUser} = useSelector(state => state.user);
+      console.log('current user', currentUser)
     return (
         
             <Navbar className="border-2">
@@ -40,11 +44,39 @@ const Header = () => {
 
 
                    </button>
-                   <Link to ='/signin' >
+                   {currentUser?(
+                      <Dropdown
+                      arrowIcon={false} 
+                      inline
+                      label={
+                      <Avatar alt='user'  
+                      img={currentUser.profilePicture}
+                      rounded />}
+                      >
+                        <Dropdown.Header>
+                            <span className='block text-sm'>@{currentUser.username}</span>
+                            <span className='block text-sm font-medium truncate'>{currentUser.email}</span>
+
+                        </Dropdown.Header>
+                        <Link to={'/dashboard?tab=file'}>
+                            <Dropdown.Item>Profile</Dropdown.Item>    
+                        </Link>
+                        <Dropdown.Divider/>
+                            <Dropdown.Item>Sign out</Dropdown.Item>
+                        </Dropdown>
+
+
+
+
+                   ):(
+                    <Link to ='/signin' >
                     <button className=' border rounded-lg hover:bg-gradient-to-r from-purple-400  to-blue-400  w-16 h-10 border-blue-400'  >
                         sign in 
                     </button>
                    </Link>
+
+                   )}
+                   
 
                    <Navbar.Toggle/>
 
@@ -61,13 +93,7 @@ const Header = () => {
                     </Navbar.Link>
                 </Navbar.Collapse>
 
-
-
-
-
                 
-
-
 
 
             
@@ -76,5 +102,6 @@ const Header = () => {
 }
 
 export default Header;
+
 
 

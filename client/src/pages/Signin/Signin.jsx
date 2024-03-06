@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Spinner } from 'flowbite-react';
 import {signInStart, signInSuccess,signInFail} from '../../redux/user/userSlice'
 import { useDispatch, useSelector } from 'react-redux';
+import GoogleAuth from '../GoogleAuth/GoogleAuth';
 
 
 
@@ -132,8 +133,9 @@ const Signin = () => {
              :"Login" }
              
             
-          </button>
+          </button> 
         </div>
+        <GoogleAuth /> 
         <p className="text-center text-gray-500 text-xs">
           Have not account?{' '}
           <Link to='/signup' className="text-blue-500 hover:text-blue-700" >

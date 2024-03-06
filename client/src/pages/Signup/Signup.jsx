@@ -1,6 +1,7 @@
 import { Link,useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Spinner } from 'flowbite-react';
+import GoogleAuth from '../GoogleAuth/GoogleAuth';
 
 
 
@@ -140,6 +141,7 @@ const Signup = () => {
          : 'Sign Up'}   
           </button>
         </div>
+        <GoogleAuth />
         <p className="text-center text-gray-500 text-xs">
           Already have an account?{' '}
           <a className="text-blue-500 hover:text-blue-700" href="/signin">
