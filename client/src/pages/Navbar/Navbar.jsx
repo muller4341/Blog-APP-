@@ -3,11 +3,16 @@ import {Dropdown} from 'flowbite-react'
 import {Link, useLocation} from 'react-router-dom'
 import {AiOutlineSearch} from 'react-icons/ai'
 import {FaMoon} from 'react-icons/fa'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { toggleTheme } from '../../redux/theme/themeSlice'
+
+
 
 
 const Header = () => {
     const path = useLocation();
+    const dispatch = useDispatch();
+
     const{currentUser} = useSelector(state => state.user);
       console.log('current user', currentUser)
     return (
@@ -37,8 +42,9 @@ const Header = () => {
                 </button>
 
                 <div  className='flex gap-2 md:order-2'>
-                   <button className='w-12 h-10 hidden sm:inline  bg-gray-50
-                    hover:bg-blue-400  rounded-lg flex justify-center items-center'>
+                   <button className='w-12 h-10  sm:inline  bg-gray-50
+                    hover:bg-blue-400  rounded-lg flex justify-center items-center'
+                    onClick={()=>dispatch(toggleTheme())}>
 
                     <FaMoon className='text-2xl text-gray-600 ' />
 
