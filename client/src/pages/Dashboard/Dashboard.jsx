@@ -3,7 +3,7 @@ import { useLocation, } from "react-router-dom"
 import DashProfile from "./DashProfile";
 import {DashSidebar} from "./DashSidebar";
 import {  useEffect, useState } from "react";
-const Dashbord = () => {
+const Dashboard = () => {
   const location = useLocation();
   const [tab, setTab] = useState('');
   useEffect(() => {
@@ -27,4 +27,4 @@ const Dashbord = () => {
   );
 }
 
-export default Dashbord;
+export default Dashboard;
