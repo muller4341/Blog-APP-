@@ -83,7 +83,7 @@ const DashProfile = () => {
         <div className=" relative w-32 h-32 self-center cursor-pointer shadow-md
         rounded-full overflow-hidden " onClick={()=> filePickerRef.current.click()}>
           {imageFileUploadProgress && (<CircularProgressbar 
-          value={imageFileUploadProgress} 
+          value={imageFileUploadProgress|| 0} 
           text={`${imageFileUploadProgress}%`}
           strokeWidth={5}
           styles= {{
@@ -95,14 +95,15 @@ const DashProfile = () => {
                   left:0
                 },
                 path:{
-                  stroke:`rgba(62, 138, 224, ${imageFileUploadProgress/100})`,
-                  transition:'stroke-dashoffset 0.5s ease 0s',
+                  stroke:`rgba(67, 150, 250, ${imageFileUploadProgress/100})`,
+                  
                 },
           }}
           />) }  
-        <img src={imageFileUrl || currentUser.profilePicture} alt="profile"  
-        className={`rounded-full w-full h-full border-8 border-gray-300
-        object-cover ${imageFileUploadProgress && imageFileUploadProgress < 100 && 'opacity-60'}`} />
+        <img src={imageFileUrl || currentUser.profilePicture} alt="user"  
+        className={`rounded-full  w-full h-full border-8   border-gray-300
+        object-cover ${imageFileUploadProgress && imageFileUploadProgress < 100 && 'opacity-60 '}`} />
+        
         </div>
         {imageFileUploadError && <Alert Alert className="text-red-500">{imageFileUploadError}</Alert>}
         <TextInput type="text" id="username" value={currentUser.username} placeholder="username"/>

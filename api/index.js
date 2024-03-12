@@ -6,14 +6,16 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import path from 'path';
 import multer from 'multer';
-import userRouter from './routes/userrouter.js';
+import userRouter from './routes/userRouter.js';
 import auth from './routes/auth.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
 dotenv.config();
 
 //mongoose connection
+
 mongoose.connect(process.env.MONGO_URL)
 .then (() => {
     console.log('Database connected');
@@ -23,6 +25,7 @@ mongoose.connect(process.env.MONGO_URL)
 });
 //middleware
 app.use(express.json());
+app.use(cookieParser());
 app.use('/api/user', userRouter);
 app.use('/api/auth', auth);
 app.listen(process.env.PORT, () => {
