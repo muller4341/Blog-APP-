@@ -18,6 +18,8 @@ import { useDispatch } from "react-redux";
     const [imageFileUrl, setImageFileUrl] = useState(null);
     const [imageFileUploadProgress, setImageFileUploadProgress] =useState(0);
     const [imageFileUploadError, setImageFileUploadError] =useState(null);
+    const [updateUserSuccess, setUpdateUserSuccess]=useState(false);
+    const [updateUserError, setUpdateUserError]=useState(null);
     const[formData, setFormData]=useState({});
     const filePickerRef = useRef();
     const dispatch = useDispatch();
@@ -53,7 +55,7 @@ import { useDispatch } from "react-redux";
       // }
       setImageFileUploading(true);
       setImageFileUploadError(null);
-      const storage= getStorage(app)
+      const storage= getStorage(app);
       const fileName= new  Date().getTime() + imageFile.name;
       const storageRef= ref(storage, fileName);
       const uploadTask= uploadBytesResumable(storageRef, imageFile)
@@ -63,9 +65,9 @@ import { useDispatch } from "react-redux";
           const progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
               setImageFileUploadProgress(progress.toFixed(0));
 
-        }
+        },
 
-      ),
+      
             (error) =>{
         setImageFileUploadError("image could not upload , file muse be less than 2mb", error);
 
@@ -78,14 +80,19 @@ import { useDispatch } from "react-redux";
       ,
       ()=>{
 
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
+        getDownloadURL(uploadTask.snapshot.ref)
+        .then((downloadURL)=>{
         setImageFileUrl(downloadURL);
         console.log('downloadURL', downloadURL);
         setFormData({...formData, profilePicture: downloadURL});
         setImageFileUploading(false);
         })
+        .catch((error)=>{
+          console.log("image could not upload , file muse be less than 2mb", error);
+          
+        })
 
-      }
+      });
 
     };
     
@@ -93,16 +100,17 @@ import { useDispatch } from "react-redux";
       console.log('formData of the user', formData);
       console.log('currentUerId in the update class', currentUser._id);
       e.preventDefault();
-      
+      setUpdateUserError(null);
+      setUpdateUserSuccess(null);
       if( Object.keys(formData).length === 0){
-        console.log('No changes were made');
+        setUpdateUserError('No changes were made');
         return;
 
       }
 
     // Wait for the image upload to complete
   if (imageFileUploading) {
-    console.log('Please wait for the image upload to complete');
+    setUpdateUserError('Please wait for the image upload to complete');
     return;
   }
     
@@ -121,15 +129,20 @@ import { useDispatch } from "react-redux";
                 
                   const data = await res.json();
                   dispatch(updateSuccess(data));
+                  setUpdateUserSuccess("User's profile updated successfully");
                 }
                 
                 else{
+                  
                   let errorMessage = 'An error occurred';
                   if (res.headers.get('Content-Type').includes('application/json')) {
                     const errorData = await res.json();
+                    setUpdateUserError(errorData.message);
                     errorMessage = errorData.message;
                   }
                   dispatch(updateFail(errorMessage));
+                
+
 
                 }
             
@@ -161,18 +174,20 @@ import { useDispatch } from "react-redux";
         ref={filePickerRef}
         hidden />
         <div className=" relative w-32 h-32 self-center cursor-pointer shadow-md
-        rounded-full overflow-hidden " 
+        rounded-full overflow-hidden bg-green-500 " 
         onClick={()=> filePickerRef.current.click()}>
-          {imageFileUploadProgress &&
+           {imageFileUploadProgress &&
            (<CircularProgressbar 
           value={imageFileUploadProgress|| 0} 
           text={`${imageFileUploadProgress}%`}
           strokeWidth={5}
+          
           styles= {{
                 root:{
                   height:'100%',
                   width:'100%',
                   position:'absolute',
+                  color:'red',
                   top:0,
                   left:0
                 },
@@ -181,10 +196,10 @@ import { useDispatch } from "react-redux";
                   
                 },
           }}
-          />) }  
+          />) }   
         <img 
         src={imageFileUrl || currentUser.profilePicture} alt="user"  
-        className={`rounded-full  w-full h-full border-8   border-gray-300
+        className={`rounded-full bg-yellow-200   border-8 w-full h-full  border-red-300
         object-cover 
         ${imageFileUploadProgress && imageFileUploadProgress < 100 && 'opacity-60 '}`} />
         
@@ -220,6 +235,12 @@ import { useDispatch } from "react-redux";
         <span className="cursor-pointer"> Delate Account</span>
         <span className="cursor-pointer"> Sign out</span>
       </div>
+      {updateUserSuccess &&
+      ( <Alert className="text-green-500 justify-center text-[16px] font-semibold">
+        {updateUserSuccess}</Alert>)}
+        {updateUserError &&
+      ( <Alert className="text-red-500 justify-center text-[16px] font-semibold">
+        {updateUserError}</Alert>)}
 
     </div>
             )
