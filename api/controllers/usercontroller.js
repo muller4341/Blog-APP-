@@ -61,6 +61,24 @@ catch (error) {
 
 }
 ;
-export { test , updateUser}
+const deleteUser = async (req, res, next) => {  
+
+    if(req.user.id!==req.params.userId){
+        return next(errorHandler(403, 'you are not allowed to delete this account,you can delete only your account'));
+
+    }
+        try {
+            await User.findByIdAndDelete(req.params.userId);
+            res.status(200).json('Account has been deleted successfully');
+        }
+        catch (error) {
+            next(error);
+        }
+        
+
+}
+;
+
+export { test , updateUser , deleteUser}
 
 // Compare this snippet from client/src/pages/Projects/Projects.jsx:

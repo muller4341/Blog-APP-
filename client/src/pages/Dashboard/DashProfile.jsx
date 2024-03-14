@@ -213,7 +213,7 @@ import { useDispatch } from "react-redux";
         placeholder="username"
         onChange={changeHandler}
         />
-        <TextInput 
+        <TextInput   
         type="email"
          id="email" 
          defaultValue={currentUser.email}
