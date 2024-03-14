@@ -1,4 +1,5 @@
-import { TextInput } from "flowbite-react";
+import { Modal, TextInput } from "flowbite-react";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { useSelector } from "react-redux";
 import {Button} from  'flowbite-react';
 import { useState , useRef, useEffect} from "react";
@@ -8,11 +9,17 @@ import 'react-circular-progressbar/dist/styles.css';
 import {  getDownloadURL,   getStorage, ref,  uploadBytesResumable} from 'firebase/storage';
 import {Alert} from "flowbite-react";
 //import { object } from "prop-types";
-import { updateStart,updateSuccess, updateFail } from "../../redux/user/userSlice";
+import { 
+  updateStart,
+  updateSuccess,
+  updateFail,
+  deleteUserFail,
+deleteUserStart,
+deleteUserSuccess } from "../../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 
     const DashProfile = () => {
-    const {currentUser} = useSelector((state)=>state.user);
+    const {currentUser, error} = useSelector((state)=>state.user);
     const [imageFile, setImageFile] = useState(null);
     const[imageFileUploading, setImageFileUploading]=useState(false);
     const [imageFileUrl, setImageFileUrl] = useState(null);
@@ -23,7 +30,7 @@ import { useDispatch } from "react-redux";
     const[formData, setFormData]=useState({});
     const filePickerRef = useRef();
     const dispatch = useDispatch();
-
+    const [showModal, setShowModal]=useState(false);
     const changeHandler = (e) => {
       setFormData({...formData, [e.target.id]: e.target.value});
     };
@@ -161,6 +168,33 @@ import { useDispatch } from "react-redux";
 
           
     };
+
+    const handelDeleteUser = async () => {
+      setShowModal(false);
+      try {
+        dispatch(deleteUserStart());
+        const res= await fetch(`/api/user/delete/${currentUser._id}`,{
+          method: 'DELETE',
+        });  
+          if (res.ok){
+            const data = await res.json();
+            dispatch(deleteUserSuccess(data));
+          }
+          else{
+            let errorMessage = 'An error occurred';
+            if (res.headers.get('Content-Type').includes('application/json')) {
+              const errorData = await res.json();
+              dispatch(deleteUserFail(errorData.message));
+              errorMessage = errorData.message;
+            }
+            dispatch(deleteUserFail(errorMessage));
+          }
+      }
+      catch (error) {
+        dispatch(deleteUserFail(error.message));
+      }
+
+    }
     
 
 
@@ -232,7 +266,8 @@ import { useDispatch } from "react-redux";
         </Button>
       </form>
       <div className="text-red-500 flex justify-between mt-5">
-        <span className="cursor-pointer"> Delate Account</span>
+        <span className="cursor-pointer"  
+        onClick={()=>setShowModal(true)}   > Delate Account</span>
         <span className="cursor-pointer"> Sign out</span>
       </div>
       {updateUserSuccess &&
@@ -241,6 +276,33 @@ import { useDispatch } from "react-redux";
         {updateUserError &&
       ( <Alert className="text-red-500 justify-center text-[16px] font-semibold">
         {updateUserError}</Alert>)}
+
+        {error &&
+      ( <Alert className="text-red-500 justify-center text-[16px] font-semibold">
+        {error}</Alert>)}
+        <Modal show={showModal} onClose={()=> setShowModal(false)}  popup size='md'>
+          <Modal.Header/>
+          <Modal.Body>
+            <div  className=" flex  flex-col justify-center items-center">
+              <HiOutlineExclamationCircle className="text-red-500 text-[50px]"/>
+              <p className="text-red-600"> Are you shure you want to delete your account?
+                
+              </p>  
+              <div className="flex flex-row  mx-4  md:space-x-20 space-x-4 mt-2">
+                <Button onClick={handelDeleteUser} color='failure' >yes,I'm sure</Button>
+                <Button onClick={()=> setShowModal(false)} >No, cancel</Button>
+
+
+
+              </div>
+
+            </div>
+          </Modal.Body>
+            
+
+
+          </Modal>
+
 
     </div>
             )
