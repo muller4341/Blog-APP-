@@ -79,6 +79,17 @@ const deleteUser = async (req, res, next) => {
 }
 ;
 
-export { test , updateUser , deleteUser}
+const signOut = ( req, res, next) => {
+      try {
+        res.clearCookie('token')
+        res.status(200)
+        .json('user signed out successfully');                                  
+       }
+         catch (error) {
+              next(error);
+         }
+}
+
+export { test , updateUser , deleteUser, signOut}
 
 // Compare this snippet from client/src/pages/Projects/Projects.jsx:

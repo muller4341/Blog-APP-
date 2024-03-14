@@ -15,7 +15,8 @@ import {
   updateFail,
   deleteUserFail,
 deleteUserStart,
-deleteUserSuccess } from "../../redux/user/userSlice";
+deleteUserSuccess ,
+signOutSuccess} from "../../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 
     const DashProfile = () => {
@@ -194,7 +195,25 @@ import { useDispatch } from "react-redux";
         dispatch(deleteUserFail(error.message));
       }
 
+    };
+
+    const handelSignOut = async () => {
+      try {
+        const res= await fetch(`/api/user/signout`,{
+          method: 'POST',
+        });  
+        const data = await res.json();
+        if (!res.ok) {
+          console.log(data.message);
+        } else {
+          dispatch(signOutSuccess());
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
     }
+
+
     
 
 
@@ -268,7 +287,7 @@ import { useDispatch } from "react-redux";
       <div className="text-red-500 flex justify-between mt-5">
         <span className="cursor-pointer"  
         onClick={()=>setShowModal(true)}   > Delate Account</span>
-        <span className="cursor-pointer"> Sign out</span>
+        <span className="cursor-pointer  " onClick={handelSignOut}> Sign out</span>
       </div>
       {updateUserSuccess &&
       ( <Alert className="text-green-500 justify-center text-[16px] font-semibold">
