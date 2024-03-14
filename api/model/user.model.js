@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     },
     profilePicture: {
         type: String,
-        default: "https://media.istockphoto.com/id/1327592506/vector/default-avatar-photo-placeholder-icon-grey-profile-picture-business-man.jpg?s=612x612&w=0&k=20&c=BpR0FVaEa5F24GIw7K8nMWiiGmbb8qmhfkpXcp1dhQg="
+        default: 'https://tse3.mm.bing.net/th?id=OIP.d14ED9H9QeOn7Uka5EpxVwHaHa&pid=Api&P=0&h=220https://cdn.dribbble.com/users/2364329/screenshots/5930135/aa.jpg',
     },      
 
 },

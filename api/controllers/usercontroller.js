@@ -15,28 +15,30 @@ const updateUser =async (req, res,next) => {
         return next(errorHandler(403, 'you are not allowed to update this account,you can update only your account'));
 
     }
-    console.log('req.body.password', req.body.password)
-    console.log('req.body.username', req.body.username)
-    console.log('req.body.email', req.body.email)
-    if (req.body.password.length<6) {
+    
+    if(req.body.password){
+    if ( req.body.password.length<6) {
         return next(errorHandler(400, 'password must be at least 6 characters long'));
     
     }
     req.body.password = bcrypt.hashSync(req.body.password , 10);
+}
 
+        if(req.body.username){
     if (req.body.username<5) {
         return next(errorHandler(400, 'username must be at least 5 characters long'));
     }
     
-    if (req.body.username && req.body.username.includes(' ')) {
+    if ( req.body.username.includes(' ')) {
         return next(errorHandler(400, 'username must not contain spaces'));
     }
-    if ( req.body.username && req.body.username!==req.body.username.toLowerCase()) {
+    if (req.body.username!==req.body.username.toLowerCase()) {
         return next(errorHandler(400, 'username must be in lowercase'));
     }
-    if(req.body.username && !req.body.username.match(/^[a-zA-Z0-9]+$/)) {
+    if(!req.body.username.match(/^[a-zA-Z0-9]+$/)) {
         return next(errorHandler(400, 'username must contain only letters and numbers'));
     }
+}
     try {
         const updatedUser = await User.findByIdAndUpdate(req.params.userId, {
             $set:{
@@ -48,7 +50,8 @@ const updateUser =async (req, res,next) => {
             },
     }, {new: true});
     const {password, ...rest} = updatedUser._doc
-    res.status(200).json( updateUser);
+    console.log("password rest", rest)
+    res.status(200).json( rest);
     
 }
 catch (error) {
