@@ -55,7 +55,7 @@ const signin =async(req, res, next) => {
             next(errorHandler(400, 'Invalid credentials'));
             return;
         }
-        const token = jwt.sign(  {id: user._id}, process.env.JWT_SECRET);
+        const token = jwt.sign(  {id: user._id, isAdmin:validUser.isAdmin}, process.env.JWT_SECRET);
          const {password: pass, ...userInfo} = user._doc;    
             
         console.log( 'token =', token);
@@ -85,7 +85,7 @@ const google = async (req, res, next) => {
         const user = await User.findOne({email});
 
         if (user) {
-            const token = jwt.sign(  {id: user._id}, process.env.JWT_SECRET);
+            const token = jwt.sign(  {id: user._id, isAdmin:user.isAdmin}, process.env.JWT_SECRET);
             const {password, ...rest} = user._doc;    
             res.status(200)
             .cookie('access_token', token, {

@@ -18,7 +18,12 @@ const userSchema = new mongoose.Schema({
     profilePicture: {
         type: String,
         default: 'https://media.istockphoto.com/id/1027708676/vector/man-avatar-icon-man-flat-icon-man-faceless-avatar-man-character-businessman-avatar-icon.jpg?s=612x612&w=0&k=20&c=PRBua8vvZ6lSvG7oe0fHrvQ-1nkGpixbwymm8CiHpqI=',
-    },      
+    }, 
+    
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
 
 },
 {timestamps: true}
