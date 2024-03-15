@@ -8,6 +8,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import {  getDownloadURL,   getStorage, ref,  uploadBytesResumable} from 'firebase/storage';
 import {Alert} from "flowbite-react";
+import { Link } from 'react-router-dom';
 //import { object } from "prop-types";
 import { 
   updateStart,
@@ -20,7 +21,7 @@ signOutSuccess} from "../../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 
     const DashProfile = () => {
-    const {currentUser, error} = useSelector((state)=>state.user);
+    const {currentUser, error, loading} = useSelector((state)=>state.user);
     const [imageFile, setImageFile] = useState(null);
     const[imageFileUploading, setImageFileUploading]=useState(false);
     const [imageFileUrl, setImageFileUrl] = useState(null);
@@ -279,10 +280,29 @@ import { useDispatch } from "react-redux";
          id='password'
          onChange={changeHandler}
          />
-        <Button type='submit' outline>
-          <p className="text-[20px]">Update</p>
+        <Button type='submit' outline
+        disabled={loading ||imageFileUploading}>
+          <p className="text-[20px]">
+            {loading?'loading...' : 'Update'}</p>
 
         </Button>
+          {currentUser.isAdmin && (
+          <Link to={'/createpost'}>
+          <Button
+          type="button"
+              className="w-full ">
+          <p className="text-[20px]"> Create Post   </p>
+
+          </Button>
+          
+          
+          
+          </Link>
+
+
+          )}
+
+
       </form>
       <div className="text-red-500 flex justify-between mt-5">
         <span className="cursor-pointer"  

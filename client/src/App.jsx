@@ -8,6 +8,8 @@ import About from './pages/About/About'
 import Navbar from './pages/Navbar/Navbar'
 import Footer from './pages/footer/footer'
 import PrivateRoute from './components/PrivateRoute'
+import CreatePost from './pages/createPost/createPost'
+import AdminPrivateRoute from './components/adminPrivateRoute'
 
 function App() {
   
@@ -23,8 +25,12 @@ function App() {
 <Route element={<PrivateRoute/>} >
 <Route path="/dashboard" element={<Dashboard/>} />
   </Route>
-<Route path="/projects" element={<Projects/>} />
+<Route path="/projects" element={<Projects/>} />r
 <Route path="/about" element={<About/>} />
+
+<Route element={<AdminPrivateRoute/>} >
+<Route path="/createpost" element={<CreatePost/>}/>
+  </Route>
 
 
 
