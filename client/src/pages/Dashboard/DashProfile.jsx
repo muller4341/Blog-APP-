@@ -97,7 +97,7 @@ import { useDispatch } from "react-redux";
         setImageFileUploading(false);
         })
         .catch((error)=>{
-          console.log("image could not upload , file muse be less than 2mb", error);
+          console.log("image failed ", error);
           
         })
 

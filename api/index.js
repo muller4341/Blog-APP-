@@ -12,6 +12,7 @@ import cookieParser from 'cookie-parser';
 import postRoute from './routes/postRoute.js';
 
 const app = express();
+app.use(cors());
 
 dotenv.config();
 
@@ -31,7 +32,7 @@ app.use('/api/user', userRouter);
 app.use('/api/auth', auth);
 app.use('/api/post', postRoute);
 app.listen(process.env.PORT, () => {
-    console.log('Server is running on port 3000');
+    console.log(`Server is running on port ` + process.env.PORT);
     }
 );
 
