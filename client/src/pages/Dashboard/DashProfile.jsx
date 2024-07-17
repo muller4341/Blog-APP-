@@ -289,9 +289,11 @@ import { useDispatch } from "react-redux";
           {currentUser.isAdmin && (
           <Link to={'/createpost'}>
           <Button
-          type="button"
-              className="w-full ">
-          <p className="text-[20px]"> Create Post   </p>
+          type='button'
+          gradientDuoTone='purpleToPink'
+          className='w-full'
+        >
+          Create a post
 
           </Button>
           

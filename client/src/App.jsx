@@ -18,16 +18,15 @@ function App() {
 <Router>
   <Navbar/>
 <Routes>
-
 <Route path="/" element={<Home/>} />
 <Route path="/signin"element={<Signin/>} />
 <Route path="/signup" element={<Signup/>} />
+
+<Route path="/projects" element={<Projects/>} />r
+<Route path="/about" element={<About/>} />
 <Route element={<PrivateRoute/>} >
 <Route path="/dashboard" element={<Dashboard/>} />
   </Route>
-<Route path="/projects" element={<Projects/>} />r
-<Route path="/about" element={<About/>} />
-
 <Route element={<AdminPrivateRoute/>} >
 <Route path="/createpost" element={<CreatePost/>}/>
   </Route>
@@ -35,7 +34,10 @@ function App() {
 
 
 
-  </Routes>
+ 
+
+  </Routes> 
+  
   <Footer/>
 
 

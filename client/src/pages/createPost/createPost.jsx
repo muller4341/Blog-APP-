@@ -3,6 +3,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 const createPost=()=> {
+   // const [content, setContent] = useState('');
+   // const {file , setFile} = useState(null);
 
 
 return (
@@ -10,7 +12,8 @@ return (
     <h1 className="text-center my-7 font-bold text-[26px] bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-yellow-600 to-red-600">Create Post</h1>
     <form className=" flex flex-col gap-4">
         <div className="flex md:flex-row flex-col  justify-between gap-4 ">
-            <TextInput  type="text" placeholder="" required id="title" 
+            <TextInput  type="text"      
+            placeholder="" required id="title" 
             className="flex-1"/>
             <Select>
                 <option value="uncategorized">Select a Category </option>
