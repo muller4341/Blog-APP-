@@ -1,10 +1,53 @@
 import { Button, FileInput, Select, TextInput } from "flowbite-react";
+import { set } from "mongoose";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 const createPost=()=> {
    // const [content, setContent] = useState('');
-   // const {file , setFile} = useState(null);
+   const {file , setFile} = useState(null);
+   const [imageUploadProgress, setImageUploadProgress] = useState(null);
+   const [imageUploadError, setImageUploadError] = useState(null);
+   const [formData, setFormData] = useState({       
+});
+   const handleUploadImage = async () => {
+    try {
+        if (!file) {  
+            setImageUploadError('Please select an image');
+             return;
+        }
+        setImageUploadError(null);
+        const storage = getStorage(app);
+        const filename = new Date().getTime() + '-' + file.name;
+        const storageRef = ref(storage,filename);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                setImageUploadProgress(progress.toFixed(0));
+                console.log('Upload is ' + progress + '% done');
+                
+            },
+            (error) => {
+                setImageUploadError('An error occurred while uploading the image'); 
+                setImageUploadProgress(null);
+                console.log(error);
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setImageUploadProgress(null);
+                    setImageUploadError(null);
+                    setFormData({ ...formData, image: downloadURL });
+                    console.log('File available at', downloadURL);
+                });
+            }
+        );
+    } catch (error) {
+        setImageUploadError('image upload failed');
+        setImageUploadProgress(null);
+        console.log(error);
+        
+    }
 
 
 return (
@@ -27,8 +70,13 @@ return (
              </div>
              <div  className="flex items-center  justify-between gap-4 p-3
              border-red-400 border-dotted border-4"> 
-             <FileInput type='file' accept="image/*"/>
-             <Button type="button" size='sm'  outline>  Upload Image </Button>
+             <FileInput
+              type='file' 
+              accept='image/*'onChange={(e)=>setFile(e.target.files[0])}/>
+             <Button type="button" 
+             size='sm'  outline
+             onClick={handleUploadImage} >
+                  Upload Image </Button>
              </div>
              <ReactQuill theme="snow" placeholder="write something..." className="h-72 m-4"/>
              <Button className="m-4 " type="submit" size="lg" outline>
@@ -42,8 +90,8 @@ return (
 
 );
 
+   }
 }
 
 
-
-export default createPost 
+export default createPost ;
