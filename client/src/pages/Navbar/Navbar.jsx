@@ -37,12 +37,12 @@ const Header = () => {
         
             <Navbar className="border-2">
                 <Link to='/' className='self-center whitespace-nowrap 
-                text-2xl sm:text-3xl font-semibold dar:text-white '>
+                text-2xl sm:text-3xl font-semibold dark:text-white '>
                     <span className='text-2xl sm:text-3xl font-bold
                     bg-gradient-to-r from-yellow-600 to-red-600 text-white rounded-lg '> Muller's
                     </span>
                     Blog
-
+  
                 </Link>
 
                 <form className='flex '>
@@ -59,7 +59,7 @@ const Header = () => {
                     <AiOutlineSearch className='text-2xl' />
                 </button>
 
-                <div  className='flex gap-2 md:order-2'>
+                <div  className='flex gap-2 md:order-1'>
                    <button className='w-12 h-10  sm:inline  bg-gray-50
                     hover:bg-blue-400  rounded-lg flex justify-center items-center'
                     onClick={()=>dispatch(toggleTheme())}>
@@ -94,7 +94,8 @@ const Header = () => {
 
                    ):(
                     <Link to ='/signin' >
-                    <button className=' border rounded-lg hover:bg-gradient-to-r from-purple-400  to-blue-400  w-16 h-10 border-blue-400'  >
+                    <button className=' border rounded-lg hover:bg-gradient-to-r from-purple-400  to-blue-400 
+                     w-16 h-10 border-blue-400'  >
                         sign in 
                     </button>
                    </Link>
@@ -102,7 +103,8 @@ const Header = () => {
                    )}
                    
 
-                   <Navbar.Toggle/>
+                   <Navbar.Toggle/> 
+
 
                 </div>
                 <Navbar.Collapse>

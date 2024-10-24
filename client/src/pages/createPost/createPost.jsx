@@ -1,5 +1,6 @@
 import { Button, FileInput, Select, TextInput } from "flowbite-react";
 import { set } from "mongoose";
+import { useState } from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -94,4 +95,4 @@ return (
 }
 
 
-export default createPost ;
+export default createPost ; 
