@@ -2,12 +2,14 @@ import { Link,useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Spinner } from 'flowbite-react';
 import GoogleAuth from '../GoogleAuth/GoogleAuth';
+import { useSelector } from 'react-redux';
 
 
 
 const Signup = () => {
     const [formData, setFormData] = useState()
     const navigate = useNavigate();
+    const {theme } =useSelector((state=>state.theme))
     
     const [loading, setLoading] = useState(false);
     const[errorMessage, setErrorMessage] = useState(null);
@@ -56,20 +58,30 @@ const Signup = () => {
 
     return (
             <div className=" flex  md:flex-row flex-col w-full h-full  ">
+              
                 {/* left */}
-                <div className=' flex  flex-col justify-center items-center bg-yellow-100 md:w-1/2 w-full md:h-screen h-auto' >
-                <Link to='/' className='self-center whitespace-nowrap 
-                text-2xl sm:text-3xl font-semibold dar:text-white '>
-                    <span className='text-2xl sm:text-3xl font-bold
-                    bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 text-white rounded-lg '> Muller's
-                    </span>
-                    Blog
+                <div 
+  className="flex flex-col justify-center items-center md:w-1/2 w-full md:h-screen h-auto bg-yellow-100 text-gray-700
+"
+>
+  <Link 
+    to='/' 
+    className='self-center whitespace-nowrap text-2xl sm:text-3xl font-semibold dark:text-white'
+  >
+    <span 
+      className='text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 text-white rounded-lg'
+    >
+      Muller's
+    </span>
+    Blog
+  </Link>
+  
+  <p className='text-blue-700 text-[18px] m-4'>
+    Valuable information will be shared in this blog, where anyone can access and read the posts, as well as leave comments.
+  </p>
+</div>
 
-                </Link>
-                <p className=' text-blue-700 text-[18px] m-4'>
-                Valuable information will be shared in this blog, where anyone can access and read the posts, as well as leave comments.</p>,
-
-                </div>
+                
                 {/* right */}
         <div className=' flex justify-center items-center md:w-1/2 w-full md:h-screen h-auto'>
 

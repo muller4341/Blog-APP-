@@ -1,27 +1,17 @@
 import { useSelector } from "react-redux";
-import {PropTypes } from "prop-types";
+export default function ThemeProvider({children}){
+  const {theme }= useSelector(state => state.theme)
 
-const ThemeProvider= ({children})=>  {
-const {theme} = useSelector((state=>state.theme) );
-console.log('theme', theme)
 
-ThemeProvider.propTypes = {
-  children: PropTypes.node,
-};
-const themeClass = theme === 'light' ? 'bg-white text-black' : 'dark:bg-black dark:text-white';
-
-    console.log('themeClass', themeClass)
 
   return (
-    <div className={themeClass}>
-      {/* <div className="bg-white text-black dark:bg-black dark:text-white">
-     
-     </div> */}
-     {children}
+    <div className={theme}>
+      <div className="min-h-screen bg-white text-gray-700 dark:bg-gray-900 dark:text-white">
+        {children}
+      </div>
 
     </div>
-  );
+  );  
 }   
 
-export default ThemeProvider;
 

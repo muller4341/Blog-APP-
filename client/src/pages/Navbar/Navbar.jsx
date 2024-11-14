@@ -1,4 +1,4 @@
-import {Avatar, Navbar} from 'flowbite-react'
+import {Avatar, Button, Navbar} from 'flowbite-react'
 import {Dropdown} from 'flowbite-react'
 import {Link, useLocation} from 'react-router-dom'
 import {AiOutlineSearch} from 'react-icons/ai'
@@ -12,8 +12,14 @@ import { signOutSuccess } from '../../redux/user/userSlice'
 
 
 const Header = () => {
+ 
+
     const path = useLocation();
     const dispatch = useDispatch();
+    const handleToggle = () => {
+      dispatch(toggleTheme()); // No payload needed
+    };
+  
 
     const{currentUser} = useSelector(state => state.user);
       console.log('current user', currentUser)
@@ -60,14 +66,15 @@ const Header = () => {
                 </button>
 
                 <div  className='flex gap-2 md:order-1'>
-                   <button className='w-12 h-10  sm:inline  bg-gray-50
+                   <Button className='w-12 h-10  sm:inline  bg-gray-50
                     hover:bg-blue-400  rounded-lg flex justify-center items-center'
-                    onClick={()=>dispatch(toggleTheme())}>
+                     onClick={()=>dispatch(toggleTheme())}>
 
                     <FaMoon className='text-2xl text-gray-600 ' />
 
 
-                   </button>
+                   </Button>
+                   
                    {currentUser?(
                       <Dropdown
                       arrowIcon={false} 
@@ -86,7 +93,7 @@ const Header = () => {
                             <Dropdown.Item>Profile</Dropdown.Item>    
                         </Link>
                         <Dropdown.Divider/>
-                            <Dropdown.Item onClick={handelSignOut}>Sign out</Dropdown.Item>
+                            <Dropdown.Item onClick={handleToggle}>Sign out</Dropdown.Item>
                         </Dropdown>
 
 
