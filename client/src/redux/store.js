@@ -33,5 +33,7 @@ export const store = configureStore({
 
 
 
-export const persistor = persistStore(store);   
+export const persistor = persistStore(store);   //persistor to store a current states to local  storage
+
+
 

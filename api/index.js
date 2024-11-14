@@ -24,7 +24,7 @@ mongoose.connect(process.env.MONGO_URL)
 })
 .catch((err) => {
     console.log(err);
-});
+});4
 //middleware
 app.use(express.json());
 app.use(cookieParser());
@@ -47,7 +47,6 @@ app.use((error, req, res, next) => {
         statusCode,
         message
     })
-
 
 
 });
