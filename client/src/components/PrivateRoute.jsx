@@ -6,4 +6,3 @@ const PrivateRoute = () => {
 }
 export default PrivateRoute;
 
-///tretnjktgmkfmkm
