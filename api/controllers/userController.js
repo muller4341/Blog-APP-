@@ -15,7 +15,6 @@ const updateUser =async (req, res,next) => {
         return next(errorHandler(403, 'you are not allowed to update this account,you can update only your account'));
 
     }
-    
     if(req.body.password){
     if ( req.body.password.length<6) {
         return next(errorHandler(400, 'password must be at least 6 characters long'));

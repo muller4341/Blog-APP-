@@ -24,7 +24,7 @@ function App() {
 
 <Route path="/projects" element={<Projects/>} />r
 <Route path="/about" element={<About/>} />
-<Route element={<PrivateRoute/>} >
+   <Route element={<PrivateRoute/>} >
 <Route path="/dashboard" element={<Dashboard/>} />
   </Route>
 <Route element={<AdminPrivateRoute/>} >

@@ -59,6 +59,7 @@ const signin =async(req, res, next) => {
          const {password: pass, ...userInfo} = user._doc;    
             
         console.log( 'token =', token);
+        console.log('userInfo =', userInfo);
         
         res.status(200)
         .cookie('access_token', token, {
