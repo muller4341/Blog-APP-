@@ -21,6 +21,7 @@ function App() {
 <Route path="/" element={<Home/>} />
 <Route path="/signin"element={<Signin/>} />
 <Route path="/signup" element={<Signup/>} />
+<Route path="/create_post" element={<CreatePost/>} />
 
 <Route path="/projects" element={<Projects/>} />r
 <Route path="/about" element={<About/>} />
@@ -28,7 +29,7 @@ function App() {
 <Route path="/dashboard" element={<Dashboard/>} />
   </Route>
 <Route element={<AdminPrivateRoute/>} >
-<Route path="/createpost" element={<CreatePost/>}/>
+<Route path="/create_post" element={<CreatePost/>}/>
   </Route>
 
 

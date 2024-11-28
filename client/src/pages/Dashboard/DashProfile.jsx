@@ -287,7 +287,7 @@ import { useDispatch } from "react-redux";
 
         </Button>
           {currentUser.isAdmin && (
-          <Link to={'/createpost'}>
+          <Link to={'/create_post'}>
           <Button
           type='button'
           gradientDuoTone='purpleToPink'
