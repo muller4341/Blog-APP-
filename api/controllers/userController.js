@@ -1,10 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { errorHandler } from '../utils/error.js';
 import User from '../model/user.model.js';
-const test= ( req, res)=> {
-    res.send('APi test route is working!')
 
-}
 
 const updateUser =async (req, res,next) => {
 
@@ -89,6 +86,6 @@ const signOut = ( req, res, next) => {
          }
 }
 
-export { test , updateUser , deleteUser, signOut}
+export {updateUser , deleteUser, signOut}
 
 // Compare this snippet from client/src/pages/Projects/Projects.jsx:

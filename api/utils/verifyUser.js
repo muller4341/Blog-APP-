@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 //import { User } from '../../models';
 import { errorHandler } from './error.js';
+
 const verifyUser = async (req, res, next) => {
     console.log('cookies:', req.cookies);
     const token = req.cookies.access_token
@@ -18,7 +19,8 @@ const verifyUser = async (req, res, next) => {
     
 
     }
-    )
+    );
 }
+
 export default verifyUser;
 
