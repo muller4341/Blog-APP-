@@ -15,8 +15,7 @@ const CreatePost=()=> {
    const [file , setFile ]= useState(null);
    const [imageUploadProgress, setImageUploadProgress] = useState(null);
    const [imageUploadError, setImageUploadError]= useState(null);
-   const [formData, setFormData] = useState({       
-});
+   const [formData, setFormData] = useState({});
    const handleUploadImage = async () => {
     try {
         if (!file) {  
@@ -92,14 +91,17 @@ return (
         <div className="flex md:flex-row flex-col  justify-between gap-4 ">
             <TextInput 
              type="text"      
-            placeholder="" required id="title" 
+            placeholder="title" 
+            required 
+            id="title" 
             className="flex-1"
             onChange={(e)=>setFormData({...formData, title: e.target.value})} 
             />
-
             
+
+    
             <Select
-            onChange={(e)=>setFormData({...formData, title: e.target.value})}>
+            onChange={(e)=>setFormData({...formData, category: e.target.value})}>
                 <option value="uncategorized">Select a Category </option>
                 <option   value="javascript">  Javascript      </option>
                 <option   value="reactjs">  React.js     </option>

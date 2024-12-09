@@ -55,7 +55,11 @@ const signin =async(req, res, next) => {
             next(errorHandler(400, 'Invalid credentials'));
             return;
         }
-        const token = jwt.sign(  {id: user._id, isAdmin:validUser.isAdmin}, process.env.JWT_SECRET);
+        console.log('validUser =', validUser);
+        console.log('user =', user);
+        console.log('user._id =', user._id);
+        console.log('isadmin =', user.isAdmin);
+        const token = jwt.sign(  {id: user._id, isAdmin:user.isAdmin}, process.env.JWT_SECRET);
          const {password: pass, ...userInfo} = user._doc;    
             
         console.log( 'token =', token);
