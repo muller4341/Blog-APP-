@@ -1,8 +1,7 @@
 
 import  express from 'express';
 import verifyUser from '../utils/verifyUser.js'
-import  createPost from '../controllers/createPost.js';
-import getPosts from '../controllers/createPost.js';
+import  {createPost,getPosts} from '../controllers/createPost.js';
 const router= express.Router();
 
 router.post('/create', verifyUser,createPost)
