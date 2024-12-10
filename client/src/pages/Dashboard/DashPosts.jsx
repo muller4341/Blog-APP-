@@ -40,7 +40,8 @@ const DashPosts = () => {
 
 
         <div className="table-auto overflow-x-scroll md:mx-auto p-3  scrollbar
-        scrollbar-track-slate-100 scrollbar-thumb-slate-">
+        scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700
+        dark:scrollbar-thumb-slate-500">
             {currentUser.isAdmin && userPosts.length >0? (
                 <>
                 <Table hoverable className = 'shadow-md'>
@@ -64,7 +65,7 @@ const DashPosts = () => {
                                     <Link to={`/post/${post.slug}`}>
                                     <img src={post.image} 
                                     alt={post.title}
-                                     className="h-10 w-20 object-cover 
+                                     className="h-20 w-40 object-cover 
                                      bg-gray-500"/>
                                     </Link>
                                 </Table.Cell>

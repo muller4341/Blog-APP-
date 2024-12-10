@@ -9,7 +9,7 @@ import GoogleAuth from '../GoogleAuth/GoogleAuth';
 
 
 
-const Signin = () => {
+const SignIn = () => {
 
     const dispatch = useDispatch();
 
@@ -60,9 +60,12 @@ const Signin = () => {
 
 
     return (
-            <div className=" flex  md:flex-row flex-col w-full h-full  ">
+            <div className=" flex  md:flex-row flex-col w-full h-full  dark:bg-gray-500">
                 {/* left */}
-                <div className=' flex  flex-col justify-center items-center bg-yellow-100 md:w-1/2 w-full md:h-screen h-auto' >
+                <div className=' flex  flex-col justify-center items-center bg-yellow-100 md:w-1/2 w-full md:h-screen h-auto
+                dark:bg-gray-700
+                dark:border-gray-1000 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100 
+                dark:hover:border-gray-800 dark:hover:shadow-lg dark:hover:shadow-lg ' >
                 <Link to='/' className='self-center whitespace-nowrap 
                 text-2xl sm:text-3xl font-semibold dar:text-white '>
                     <span className='text-2xl sm:text-3xl font-bold
@@ -76,12 +79,15 @@ const Signin = () => {
 
                 </div>
                 {/* right */}
-        <div className=' flex justify-center items-center md:w-1/2 w-full md:h-screen h-auto'>
+        <div className=' flex justify-center items-center md:w-1/2 w-full md:h-screen h-auto
+        dark:bg-gray-700
+        dark:border-gray-1000 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100 
+        dark:hover:border-gray-800 dark:hover:shadow-lg dark:hover:shadow-lg '>
 
-        <form className="bg-white shadow-md rounded px-4 pt-4 pb-8 mb-4  w-3/4 h-2/3 ">
+        <form className="bg-white shadow-md rounded px-4 pt-4 pb-8 mb-4  w-3/4 h-2/3  dark:bg-gray-500 dark:text-white ">
         
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+          <label className="block text-gray-700 text-sm font-bold mb-2 dark:text-white" htmlFor="email">
             Email
           </label>
           <input
@@ -93,7 +99,7 @@ const Signin = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+          <label className="block text-gray-700 text-sm font-bold mb-2 dark:text-white" htmlFor="password">
             Password
           </label>
           <input
@@ -136,9 +142,9 @@ const Signin = () => {
           </button> 
         </div>
         <GoogleAuth /> 
-        <p className="text-center text-gray-500 text-xs">
+        <p className="text-center text-gray-500 text-xs dark:text-white">
           Have not account?{' '}
-          <Link to='/signup' className="text-blue-500 hover:text-blue-700" >
+          <Link to='/signup' className="text-blue-500 hover:text-blue-900 dark:text-blue-800" >
             Sign up
           </Link>
         </p>
@@ -154,4 +160,4 @@ const Signin = () => {
     )
 }
 
-export default Signin;
+export default SignIn;

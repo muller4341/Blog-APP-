@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 
 
-const Signup = () => {
+const SignUp = () => {
     const [formData, setFormData] = useState()
     const navigate = useNavigate();
     const {theme } =useSelector((state=>state.theme))
@@ -57,11 +57,13 @@ const Signup = () => {
     console.log(formData)
 
     return (
-            <div className=" flex  md:flex-row flex-col w-full h-full  ">
+            <div className=" flex  md:flex-row flex-col w-full h-full   ">
               
                 {/* left */}
                 <div 
   className="flex flex-col justify-center items-center md:w-1/2 w-full md:h-screen h-auto bg-yellow-100 text-gray-700
+  dark:bg-gray-700  dark:border-gray-1000 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100 
+  dark:hover:border-gray-800 dark:hover:shadow-lg dark:hover:shadow-lg
 "
 >
   <Link 
@@ -83,11 +85,14 @@ const Signup = () => {
 
                 
                 {/* right */}
-        <div className=' flex justify-center items-center md:w-1/2 w-full md:h-screen h-auto'>
+        <div className=' flex justify-center items-center md:w-1/2 w-full md:h-screen h-auto dark:bg-gray-700
+        dark:border-gray-1000 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100 
+        dark:hover:border-gray-800 dark:hover:shadow-lg dark:hover:shadow-lg 
+        '>
 
-        <form className="bg-white shadow-md rounded px-4 pt-4 pb-8 mb-4  w-3/4 h-2/3 ">
+        <form className="bg-white shadow-md rounded px-4 pt-4 pb-8 mb-4  w-3/4 h-2/3  dark:bg-gray-500 dark:text-white">
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+          <label className="block text-gray-700 text-sm font-bold mb-2 dark:text-white" htmlFor="username">
             Username
           </label>
           <input
@@ -99,7 +104,7 @@ const Signup = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+          <label className="block text-gray-700 text-sm font-bold mb-2 dark:text-white" htmlFor="email">
             Email
           </label>
           <input
@@ -111,7 +116,7 @@ const Signup = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+          <label className="block text-gray-700 text-sm font-bold mb-2 dark:text-white" htmlFor="password">
             Password
           </label>
           <input
@@ -154,9 +159,9 @@ const Signup = () => {
           </button>
         </div>
         <GoogleAuth />
-        <p className="text-center text-gray-500 text-xs">
+        <p className="text-center text-gray-500 text-xs dark:text-white font-32">
           Already have an account?{' '}
-          <a className="text-blue-500 hover:text-blue-700" href="/signin">
+          <a className="text-blue-500 hover:text-blue-900 dark:text-blue-800" href="/signin">
             Log in
           </a>
         </p>
@@ -172,4 +177,4 @@ const Signup = () => {
     )
 }
 
-export default Signup;
+export default SignUp;
