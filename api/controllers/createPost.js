@@ -28,7 +28,7 @@ const createPost = async (req, res, next) => {
 
  const getPosts = async (req, res, next) => {
   try {
-    const startIndex = parseInt(req.query.startIdx) || 0;
+    const startIndex = parseInt(req.query.startIndex) || 0;
     const limit = parseInt(req.query.limit) || 9;
     const sortDirection = req.query.order === 'asc' ? 1 : -1;
     const posts = await Post.find({
