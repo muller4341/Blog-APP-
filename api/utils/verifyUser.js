@@ -20,7 +20,7 @@ const verifyUser = async (req, res, next) => {
 
     }
     );
-    console.log('req.user.isadmin:', req.user.isAdmin);
+    console.log('req.user.isAdmin:', req.user.isAdmin);
 }
 
 export default verifyUser;
