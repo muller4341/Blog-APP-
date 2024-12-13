@@ -75,7 +75,7 @@ const handelShowMore= async() => {
 const handelDeleteUser= async() => {
     setShowModal(false);
     try{
-        const res = await fetch(`/api/user/deleteuser/${userIdToDelete}/${currentUser._id}`, {
+        const res = await fetch(`/api/user/delete/${userIdToDelete}`, {
             method: 'DELETE',
             
         });
@@ -85,7 +85,7 @@ const handelDeleteUser= async() => {
         }
         else
         {
-            setUsers((prev) => prev.filter((post) => post._id !== postIdToDelete));
+            setUsers((prev) => prev.filter((user) => user._id !== userIdToDelete));
         }
 
     }
