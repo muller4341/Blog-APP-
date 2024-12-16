@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.post-content h1{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    font-family: sans-serif;
+
+}
+
+.post-content p{
+
+margin-bottom: 0.5rem;
+}
+
+.post-content h2{
+
+    font-size: 1.4rem;
+    margin: 1.5rem 0;
+    font-family: sans-serif;
+}
+.post-content a{
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+}
+.post-content a:hover{
+    text-decoration: underline;
+}
+.dark.post-content a{
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+}

@@ -41,12 +41,9 @@ const PostPages = () => {
     , [postSlug]);
     if(loading) 
         return (
-        <div className="flex justify-center item-center min-h-screen">
-            
-            <Spinner size='xl'/>
-
-
-        </div>
+            <div className="flex items-center justify-center h-screen">
+            <Spinner size="xl" />
+          </div>
         );
 
     return(
@@ -57,9 +54,9 @@ const PostPages = () => {
         className='self-center '>
             <Button color='gray' pill size='xs '>{post && post.category}</Button>
             </Link>
-            <div className="flex justify-center items-center bg-gray-700">
+            <div className="flex justify-center items-center bg-gray-700 w-3/4 mx-auto">
             <img src={post && post.image} alt={post && post.title}
-             className="w-2/5 h-1/10 object-cover my-4"/>
+             className="w-3/4 h-1/10 object-cover my-4"/>
             </div>
              <div className="flex justify-between p-3 border-b border-slate-500">
                 <span>
@@ -69,9 +66,10 @@ const PostPages = () => {
                 <span>{post && (post.content.length/100).toFixed(0)} mins read</span>  
                 
              </div>
-             <div className="p-3 max-w-2xl mx-auto w-full post-content">
+             <div className="p-3 max-w-2xl mx-auto w-full post-content"
+             dangerouslySetInnerHTML={{ __html: post && post.content }}
 
-              {post && post.content}
+              >
 
              </div>
 
