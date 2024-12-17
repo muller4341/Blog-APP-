@@ -10,6 +10,7 @@ import userRouter from './routes/userRouter.js';
 import auth from './routes/auth.js';
 import cookieParser from 'cookie-parser';
 import postRoute from './routes/postRoute.js';
+import comment from './routes/comment.Route.js';
 
 const app = express();
 app.use(cors());
@@ -31,6 +32,7 @@ app.use(cookieParser());
 app.use('/api/user', userRouter);
 app.use('/api/auth', auth);
 app.use('/api/post', postRoute);
+app.use('/api/comment', comment);
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ` + process.env.PORT);
     }

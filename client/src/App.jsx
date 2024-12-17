@@ -12,13 +12,16 @@ import CreatePost from './Pages/createPost/createPost'
 import AdminPrivateRoute from './components/adminPrivateRoute'
 import UpdatePost from './Pages/UpdatePost/UpdatePost'
 import PostPages from './Pages/PostPages/PostPages.jsx'
+import ScrollToTop from './components/ScrollToTop.jsx'
  
 
 function App() {
   
 
   return (
+    
 <Router>
+  <ScrollToTop/>
   <Navbar/>
 <Routes>
   <Route path="/post/:postSlug" element={<PostPages/>} />

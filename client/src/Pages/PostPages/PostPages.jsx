@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Button, Spinner } from 'flowbite-react'
 import { Link } from "react-router-dom";
 import CallToAction from "./CallToAction";
+import CommentSection from "./CommentSection";
 
 const PostPages = () => {
     const {postSlug} = useParams();
@@ -76,6 +77,9 @@ const PostPages = () => {
 
              <div className="max-w-4x1 mx-auto w-full">
                 <CallToAction />
+             </div>
+             <div>
+                <CommentSection postId={post._id}/>
              </div>
 
     </div>

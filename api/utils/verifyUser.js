@@ -7,14 +7,16 @@ const verifyUser = async (req, res, next) => {
     const token = req.cookies.access_token
     console .log('token of verifyUser', token);
     if (!token) {
-        return next(errorHandler(401,"this does not get the token" ,'Unauthorized'));
+        return next(errorHandler(401,"this does not get the token" ,'Unauthorized man'));
     }
 
     jwt.verify(token, process.env.JWT_SECRET,  (err, user) => {
         if (err) {
-            return next(errorHandler(401, 'Unauthorized'));
+            return next(errorHandler(401, 'Unauthorized '));
         }
         req.user = user
+
+        console.log('req.user:', req.user);
         next();
     
 
