@@ -1,6 +1,6 @@
 import Comment from '../model/comment.js';
 
-const commentController = async (req, res, next) => {
+const createComment = async (req, res, next) => {
     try {
         const { postId , content, userId} = req.body;
         console.log('postId:', postId);
@@ -22,4 +22,19 @@ const commentController = async (req, res, next) => {
         res.status(500).json({ message: error.message });
     }
 }
-export default commentController;
+const getPostComments = async (req, res, next) => {
+    try {
+        const comments= await Comment.find({postId: req.params.postId}).sort({createdAt: -1});
+        res.status(200).json(comments);
+    
+    }
+    catch (error) {
+        next(error);
+    }
+
+}
+
+
+
+
+export default {createComment, getPostComments};

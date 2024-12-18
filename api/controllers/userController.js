@@ -123,8 +123,22 @@ const oneMonthAgo = new Date(
     catch (error) {
         next(error);
     }
-}
+};
+const getUser = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.params.userId);
+        if (!user) {
+            return next(errorHandler(404, 'User not found'));
+        }
+        const {password, ...rest} = user._doc;
+        res.status(200).json(rest);
+    }
+    catch (error) {
+        next(error);
+    }
+};
 
-export {updateUser , deleteUser, signOut, getUsers}
+
+export {updateUser , deleteUser, signOut, getUsers, getUser};
 
 // Compare this snippet from client/src/pages/Projects/Projects.jsx:
