@@ -84,7 +84,7 @@ const CommentSection = ({ postId }) => {
             if (res.ok) {
                 const data = await res.json();
                 setComments (comments.map((comment) => 
-                    comment._id === commentId ? {
+                    comment._id === commentId ? {   
                         ...comment,
                         likes: data.likes,
                         numberOfLikes: data.likes.length,
@@ -101,6 +101,20 @@ const CommentSection = ({ postId }) => {
 
     }
 
+    const handleEdit=async(comment, editedContent)=>{
+
+         setComments(
+          comments.map((c)=>
+        
+        c._id === comment._id?
+        {
+
+        ...c,content:editedContent}:c
+        )
+            );
+
+
+    }
 
     return (
         <div className="max-w-2x1 mx-auto w-full p-3">
@@ -161,10 +175,11 @@ const CommentSection = ({ postId }) => {
 
 
                <Comment
-               key={comment._id}
+               key={comment._id + comment.content}
                
                comment={comment}
-               onLike={handleLike}   
+               onLike={handleLike}  
+                onEdit={handleEdit} 
                />
 
                  ))
