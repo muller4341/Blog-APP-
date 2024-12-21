@@ -1,15 +1,19 @@
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, Alert } from 'flowbite-react';
+import { Button, Alert, Modal } from 'flowbite-react';
 import { TextInput } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import Comment from './Comment';
+import { HiOutlineExclamationCircle } from 'react-icons/hi';
 
 const CommentSection = ({ postId }) => {
     const { currentUser } = useSelector((state) => state.user);
     const [comment, setComment] = useState('');
     const [commentError, setCommentError] = useState(null);
     const [comments, setComments] = useState([]);
+    const[showModal, setShowModal]=useState(false);
+    const[commentToDelete, setCommentToDelete]=useState(null);
+
     const navigate = useNavigate();
     console.log('comments:', comments);
  
@@ -49,6 +53,7 @@ const CommentSection = ({ postId }) => {
            
         }
     };
+
 
    
     useEffect(() => {
@@ -115,6 +120,28 @@ const CommentSection = ({ postId }) => {
 
 
     }
+    const handelDelete= async (commentId) => {
+        try {
+           if (!currentUser) {
+               navigate('/signin');
+               return;
+           }
+              const res = await fetch(`/api/comment/deleteComment/${commentId}`, {
+                    method: 'DELETE',
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    setComments((prev) => prev.filter((comment) => comment._id !== commentId));
+                    setShowModal(false);
+                } else {
+                    console.log(data.message);
+                }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+     
 
     return (
         <div className="max-w-2x1 mx-auto w-full p-3">
@@ -180,6 +207,13 @@ const CommentSection = ({ postId }) => {
                comment={comment}
                onLike={handleLike}  
                 onEdit={handleEdit} 
+                onDelete={(commentId)=>{
+               setShowModal(true);
+               setCommentToDelete(commentId);
+
+
+                }}
+
                />
 
                  ))
@@ -191,7 +225,29 @@ const CommentSection = ({ postId }) => {
                    </>
                 )
                 }
+            <Modal show={showModal} onClose={()=> setShowModal(false)}  popup size='md'>
+          <Modal.Header/>
+          <Modal.Body>
+            <div  className=" flex  flex-col justify-center items-center">
+              <HiOutlineExclamationCircle className="text-red-500 text-[50px]"/>
+              <p className="text-red-600"> Are you shure you want to delete this comment?
+              </p>  
+              <div className="flex flex-row  mx-4  md:space-x-20 space-x-4 mt-2">
+                <Button onClick={()=>handelDelete(commentToDelete)} color='failure' >yes,I'm sure</Button>
+                <Button onClick={()=> setShowModal(false)} >No, cancel</Button>
+
+
+
+              </div>
+
+            </div>
+          </Modal.Body>
+            
+
+
+          </Modal>
         </div>
+        
     );
 };
 
