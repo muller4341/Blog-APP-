@@ -233,7 +233,7 @@ const CommentSection = ({ postId }) => {
               <p className="text-red-600"> Are you shure you want to delete this comment?
               </p>  
               <div className="flex flex-row  mx-4  md:space-x-20 space-x-4 mt-2">
-                <Button onClick={()=>handelDelete(commentToDelete)} color='failure' >yes,I'm sure</Button>
+                <Button onClick={()=>handelDelete(commentToDelete )} color='failure' >yes,I'm sure</Button>
                 <Button onClick={()=> setShowModal(false)} >No, cancel</Button>
 
 
