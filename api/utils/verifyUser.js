@@ -17,12 +17,13 @@ const verifyUser = async (req, res, next) => {
         req.user = user
 
         console.log('req.user:', req.user);
+        console.log('req.user.isAdmin:', req.user.isAdmin);
         next();
     
 
     }
     );
-    console.log('req.user.isAdmin:', req.user.isAdmin);
+   
 }
 
 export default verifyUser;
