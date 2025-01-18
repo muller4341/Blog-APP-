@@ -2,7 +2,7 @@
 
 import { Sidebar } from 'flowbite-react';
 //import { BiBuoy } from 'react-icons/bi';
-import { HiAnnotation, HiArrowSmRight, HiDocumentText, HiOutlineUserGroup, HiUser,  } from 'react-icons/hi';
+import { HiAnnotation, HiArrowSmRight, HiChartPie, HiDocumentText, HiOutlineUserGroup, HiUser,  } from 'react-icons/hi';
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { signOutSuccess } from '../../redux/user/userSlice';
@@ -40,6 +40,17 @@ export function DashSidebar() {
     <Sidebar aria-label="Sidebar with content separator example">
       <Sidebar.Items>
         <Sidebar.ItemGroup className='flex flex-col gap-2'>
+        {currentUser.isAdmin &&
+           ( <Link to='/dashboard?tab=dash'>
+          <Sidebar.Item  
+          icon={HiChartPie } label={'dashboard'}
+          active={tab==='dash' || !tab}
+          as='div'>
+            Dashboard
+          </Sidebar.Item>
+          </Link>)
+          
+          }  
         <Link to='/dashboard?tab=profile'>
         <Sidebar.Item  
         icon={HiUser} 

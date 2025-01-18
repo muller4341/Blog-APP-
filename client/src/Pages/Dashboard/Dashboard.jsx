@@ -6,6 +6,7 @@ import DashPosts from "./DashPosts";
 import DashUsers from "./DashUsers";
 import DashComments from "./DashComments";
 import {  useEffect, useState } from "react";
+import DashboardComponent from "./DashboardComponent";
 const Dashboard = () => {
   const location = useLocation();
   const [tab, setTab] = useState('');
@@ -31,6 +32,10 @@ const Dashboard = () => {
       {tab==='users' && <DashUsers />}
       {/* comments */}
       {tab==='comments' && <DashComments/>}
+      {/*dashboard comp*/}
+      {tab==='dash' &&<DashboardComponent/>
+      }
+
 
     </div>
   );
