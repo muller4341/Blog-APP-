@@ -7,7 +7,7 @@ const CallToAction = () => {
         justify-center items-center border-rounded-full text-center">
             
                 <div className=" flex-1 justify-center flex flex-col">
-                    <h1>
+                    <h1 className="text-1xl font-bold text-center text-teal-500">
                         want to know more about Ronaldo?
                     </h1>
                     <p>
