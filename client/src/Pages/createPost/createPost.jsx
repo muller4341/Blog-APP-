@@ -85,7 +85,7 @@ const handleSubmit = async (e) => {
 }
 
 return (
-<div  className="p-3 mx-auto min-h-screen">
+<div  className="p-3 mx-auto min-h-screen md:py-12 py-24">
     <h1 className="text-center my-7 font-bold text-[26px] bg-clip-text text-transparent bg-gradient-to-r from-green-600 via-yellow-600 to-red-600">Create Post</h1>
     <form className=" flex flex-col gap-4" onSubmit= {handleSubmit}>
         <div className="flex md:flex-row flex-col  justify-between gap-4 ">
@@ -103,9 +103,10 @@ return (
             <Select
             onChange={(e)=>setFormData({...formData, category: e.target.value})}>
                 <option value="uncategorized">Select a Category </option>
-                <option   value="javascript">  Javascript      </option>
-                <option   value="reactjs">  React.js     </option>
-                <option   value=" nextjs">  Next.js     </option>
+                <option   value="athlete">  Athlete      </option>
+                <option   value="expert">  Expert    </option>
+                <option   value=" background">  Background     </option>
+                
 
             </Select>
             

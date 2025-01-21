@@ -141,9 +141,9 @@ const Search = () => {
                  value={sidebarData.category}>
                    
                         <option value='uncategorized'>uncategorized</option>
-                        <option value='react.js'>React.js</option>
-                        <option value='next.js'>Next.js</option>
-                        <option value='javascript'>Javascript</option>
+                        <option   value="athlete">  Athlete      </option>
+                        <option   value="expert">  Expert    </option>
+                        <option   value=" background">  Background     </option>
                  </Select>
                     
 

@@ -19,7 +19,7 @@ const Dashboard = () => {
 
 
   return (
-    <div className="min-h-screen flex md:flex-row  flex-col py-16">
+    <div className="min-h-screen flex md:flex-row  flex-col md:py-16 py-20">
       {/* sidebar*/}
       <div>
         <DashSidebar />

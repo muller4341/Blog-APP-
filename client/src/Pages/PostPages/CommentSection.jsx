@@ -186,7 +186,7 @@ const CommentSection = ({ postId }) => {
                 </form>
             )}
             {comments.length ==0? (
-                <p className='text-sm my-5'class>No comments yet</p>
+                <p className='text-sm my-5'>No comments yet</p>
                 
             ) : (
                 <>

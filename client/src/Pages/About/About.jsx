@@ -10,7 +10,7 @@ const About = () => {
                style={{ fontFamily: 'Garamond, Georgia, serif' }}>About this page </h1>
                <div className='flex flex-col  py-4 px-4 border-b border-gray-500 justify-center items-center'>
 
-                <img src= {muller} alt='muller ' className='w-3/4 h-[210PX] md:w-1/3 md:h-[280px]
+                <img src= {muller} alt='muller ' className='w-11/12 h-[260PX] md:w-2/5 md:h-[340px]
                 border rounded-md ' />
                 <div>
                 <p className="text-[10px]  text-center 

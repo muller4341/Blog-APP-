@@ -180,7 +180,7 @@ const SignIn = () => {
           <button
             className="w-full outline-yellow-600 outline
              hover:bg-yellow-900
-             text-white font-bold md:text-[20px]  text-[18px] py-2 px-4 rounded "
+             dark:text-white text-black font-semibold md:text-[20px]  text-[18px] py-2 px-4 rounded "
             type="submit"
             onClick={handleSubmit}
             disabled={loading}

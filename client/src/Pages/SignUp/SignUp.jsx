@@ -190,7 +190,7 @@ const SignUp = () => {
           <button onClick={handleSubmit}
             className="w-full outline-yellow-600 outline
              hover:bg-yellow-900
-             text-white font-bold md:text-[18px] py-2 px-4 rounded"
+             dark:text-white font-semibold text-black md:text-[18px] py-2 px-4 rounded"
             type="button"
             disabled={loading}
           >

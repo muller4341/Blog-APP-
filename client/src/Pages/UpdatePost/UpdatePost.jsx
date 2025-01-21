@@ -21,6 +21,9 @@ const UpdatePost=()=> {
    const [imageUploadError, setImageUploadError]= useState(null);
    const [formData, setFormData] = useState({});
     const {postId} = useParams();
+    console.log("postId", postId);
+    console.log('formData:', formData);
+    console.log('currentUser:', currentUser);
 
     useEffect(() => {
 
@@ -97,12 +100,12 @@ const handleSubmit = async (e) => {
     e.preventDefault();
    
     try {
-        const res = await fetch(`/api/post/updatepost/${formData._id}/${currentUser._id}`, {
+        const res = await fetch(`/api/post/updatepost/${formData._id || postId}/${currentUser?._id}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(formData),
         });
         const data = await res.json();
        if(!res.ok){
