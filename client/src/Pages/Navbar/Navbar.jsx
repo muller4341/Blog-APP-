@@ -1,12 +1,14 @@
 import {Avatar, Button, Navbar} from 'flowbite-react'
 import {Dropdown} from 'flowbite-react'
-import {Link, useLocation} from 'react-router-dom'
+import {Link, useLocation, useNavigate} from 'react-router-dom'
 import {AiOutlineSearch} from 'react-icons/ai'
 import {FaMoon} from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import { toggleTheme } from '../../redux/theme/themeSlice'
 import { signOutSuccess } from '../../redux/user/userSlice'
-
+import {amanuel1, amanuel2,amanuel3 }from '../../assets'
+import { use } from 'react'
+import { useEffect, useState } from 'react'
 
 
 
@@ -15,7 +17,10 @@ const Header = () => {
  
 
     const path = useLocation();
+    const navigate = useNavigate();
+    const location = useLocation();
     const dispatch = useDispatch();
+    const [searchTerm, setSearchTerm] = useState('');
     const handleToggle = () => {
       dispatch(toggleTheme()); // No payload needed
     };
@@ -39,40 +44,64 @@ const Header = () => {
           console.log(error.message);
         }
       }
+      useEffect(() => {
+       const urlParams = new URLSearchParams(location.search);
+       const searchTermFromUrl = urlParams.get('searchTerm');
+        if(searchTermFromUrl){
+          setSearchTerm(searchTermFromUrl);
+      }
+      }
+      ,[location.search
+      ])
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        const urlParams = new URLSearchParams(location.search);
+        urlParams.set('searchTerm', searchTerm);
+        const searchQuery = urlParams.toString();
+        navigate(`/search?${searchQuery}`);
+      }
+
     return (
         
-            <Navbar className="border-2">
+            <Navbar className="border-2 fixed top-0 w-full z-50">
                 <Link to='/' className='self-center whitespace-nowrap 
-                text-2xl sm:text-3xl font-semibold dark:text-white '>
-                    <span className='text-2xl sm:text-3xl font-bold
-                    bg-gradient-to-r from-yellow-600 to-red-600 text-white rounded-lg '> Muller's
-                    </span>
-                    Blog
+                text-2xl sm:text-3xl font-semibold dark:text-white flex '>
+                  
+                     
+                    <img src={amanuel3} alt='logo' className='w-10 h-10 inline' />
+                    
+                    <p className='font-[cursive] italic tracking-wide ml-2 text-pink-500'
+    style={{ fontFamily: 'Garamond, Georgia, serif' }}> Amanuel Hub</p>
+                    
   
                 </Link>
 
-                <form className='flex '>
+                <form className='flex ' onSubmit={handleSubmit}>
                     <input
                         type="text"
                         placeholder="Search..."
-                        className="border-2 rounded-lg hidden lg:inline w-56 h-10 bg-gray-100"
+                        className="border-2 rounded-lg hidden lg:inline w-56 h-10 bg-gray-100 text-gray-800"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
                     />
-                    
+                      <button className=' flex w-12 h-6 lg:hidden  border rounded-xl  justify-center items-center' color='gray' >
+
+<AiOutlineSearch className='text-2xl' />
+</button>
+              
                 </form>
+               
 
-                <button className=' flex w-12 h-10 lg:hidden  border rounded-xl  justify-center items-center' color='gray' >
+               
 
-                    <AiOutlineSearch className='text-2xl' />
-                </button>
+                <div  className='flex gap-2 md:order-1 justify-center items-center'>
+                   <button className='w-8 h-6  sm:inline  dark:bg-gray-800 bg-white
+                    dark:hover:bg-gray-900 hover:bg-gray-100 rounded-lg border flex justify-center items-center'>
 
-                <div  className='flex gap-2 md:order-1'>
-                   <Button className='w-12 h-10  sm:inline  bg-gray-50
-                    hover:bg-blue-400  rounded-lg flex justify-center items-center'>
-
-                    <FaMoon className='text-2xl text-gray-600 ' onClick={()=>dispatch(toggleTheme())} />
+                    <FaMoon className='text-2xl dark:text-white text-black w-8 h-6 ' onClick={()=>dispatch(toggleTheme())} />
 
 
-                   </Button>
+                   </button>
                    
                    {currentUser?(
                       <Dropdown
@@ -100,9 +129,11 @@ const Header = () => {
 
                    ):(
                     <Link to ='/signin' >
-                    <button className=' border rounded-lg hover:bg-gradient-to-r from-purple-400  to-blue-400 
-                     w-16 h-10 border-blue-400'  >
-                        sign in 
+                    <button className=' border rounded-lg hover:bg-gray-1000
+                     w-20 h-10 border-gray-400'  >
+                      <p className='text-[18px] font-[cursive] italic tracking-wide ml-2 hover:text-yellow-600 text-yellow-400'
+                       style={{ fontFamily: 'Garamond, Georgia, serif' }} > sign in</p>
+                         
                     </button>
                    </Link>
 
@@ -115,13 +146,13 @@ const Header = () => {
                 </div>
                 <Navbar.Collapse>
                     <Navbar.Link active={ path ==='/'} as={'div'}>
-                        <Link to='/' className='text-[18px]'>Home</Link>
+                        <Link to='/' className='text-[18px] font-[cursive] italic tracking-wide ml-2 hover:text-yellow-600 text-yellow-400' style={{ fontFamily: 'Garamond, Georgia, serif' }}>Home</Link>
                     </Navbar.Link >
                     <Navbar.Link active={ path ==='/about'} as={'div'}>
-                        <Link to='/about' className='text-[18px]'>About</Link>
+                        <Link to='/about' className='text-[18px] font-[cursive] italic tracking-wide ml-2 hover:text-yellow-600 text-yellow-400' style={{ fontFamily: 'Garamond, Georgia, serif' }}>About</Link>
                     </Navbar.Link>
                     <Navbar.Link active={ path ==='/projects'} as={'div'}>
-                        <Link to='/projects' className='text-[18px]'>projects</Link>
+                        <Link to='/projects' className='text-[18px] font-[cursive] italic tracking-wide ml-2 hover:text-yellow-600 text-yellow-400' style={{ fontFamily: 'Garamond, Georgia, serif' }}>News</Link>
                     </Navbar.Link>
                 </Navbar.Collapse>
 

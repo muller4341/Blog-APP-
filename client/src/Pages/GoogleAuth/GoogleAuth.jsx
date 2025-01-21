@@ -61,8 +61,9 @@ const GoogleAuth = () => {
         <div>
         <button className=" w-full h-10 border-1 flex justify-center items-center gap-2
         
-        rounded-lg text-black text-[18px]  outline-yellow-600 outline"
+        rounded-lg text-black text-[18px]  outline-yellow-600 outline  dark:text-white  hover:bg-yellow-900"
          type="button " 
+        
          onClick={(event)=>handleOnClick(event)} >
 
             

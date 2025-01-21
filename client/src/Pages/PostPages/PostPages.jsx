@@ -70,17 +70,20 @@ const PostPages = () => {
         );
 
     return(
-    <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-semibold text-gray-800  my-4">
+    <div className="container mx-auto px-4 py-20">
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-yellow-800  my-4">
             {post && post.title}</h1>
             <Link to={`/search?category=${post && post.category}`}
         className='self-center '>
             <Button color='gray' pill size='xs '>{post && post.category}</Button>
             </Link>
-            <div className="flex justify-center items-center bg-gray-700 w-3/4 mx-auto">
+             <div className="flex justify-center">
+
             <img src={post && post.image} alt={post && post.title}
-             className="w-3/4 h-1/10 object-cover my-4"/>
-            </div>
+             className="w-3/4 md:w-2/3 h-1/10 md:h-[400px] object-cover my-4
+             border border-gray-800 rounded-md"/>
+                </div>
+            
              <div className="flex justify-between p-3 border-b border-slate-500">
                 <span>
                     {post && new Date(post.createdAt).toLocaleDateString()} 
@@ -96,10 +99,10 @@ const PostPages = () => {
 
              </div>
 
-             <div className="max-w-4x1 mx-auto w-full">
+             {/* <div className="max-w-4x1 mx-auto w-full">
                 <CallToAction />
              </div>
-        
+         */}
                 <CommentSection postId={post._id}/>
             <div  className=" flex flex-col justify-center items-center mb-5 ">
                    <h1 className="text-xl mt-5">Recent articles</h1>
