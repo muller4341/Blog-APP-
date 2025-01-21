@@ -26,6 +26,7 @@ mongoose.connect(process.env.MONGO_URL)
 .catch((err) => {
     console.log(err);
 });4
+const __dirname = path.resolve();
 //middleware
 app.use(express.json());
 app.use(cookieParser());
@@ -33,6 +34,13 @@ app.use('/api/user', userRouter);
 app.use('/api/auth', auth);
 app.use('/api/post', postRoute);
 app.use('/api/comment', comment);
+app.use(express.static(path.join(__dirname, '/client/dist')));
+app.get('*', (
+    req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+    }
+
+);
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ` + process.env.PORT);
     }
